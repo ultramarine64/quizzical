@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import StartPage from "./components/StartPage"
+import QuizPage from "./components/QuizPage"
 
-function App() {
+export default function App() {
+  const [quizStarted, setQuizStarted] = React.useState(false);
+  const [quizInProgress, setQuizInProgress] = React.useState(false);
+  const [quizData, setQuizData] = React.useState([]);
+
+  function startQuiz() {
+    setQuizStarted(true);
+    setQuizInProgress(true);
+  }
+
+  function toggleQuizProgress() {
+    setQuizInProgress(prevState => !prevState);
+  }
+
+  React.useEffect(() => {
+    // fetch in background
+    if (!quizInProgress) {
+      fetch("https://opentdb.com/api.php?amount=5&type=multiple&encode=base64")
+        .then(response => response.json())
+        .then(data => setQuizData(data.results));
+    }
+  }, [quizInProgress]);
+
+  console.log(quizData);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      quizStarted
+      ?
+      <QuizPage quizData={quizData} quizInProgress={quizInProgress} toggleQuizProgress={toggleQuizProgress} />
+      :
+      <StartPage startQuiz={startQuiz} />
   );
 }
-
-export default App;
