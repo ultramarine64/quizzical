@@ -3,8 +3,8 @@ import React from "react"
 export default function QuizQuestion(props) {
   function generateButtonItems() {
     return props.answers.map(answer => {
-      let selectedAnswer = answer == props.selectedAnswer;
-      let correctAnswer = answer == props.correctAnswer;
+      let selectedAnswer = answer === props.selectedAnswer;
+      let correctAnswer = answer === props.correctAnswer;
       const fullOpacityRequired = !props.isAnswered || (correctAnswer && props.isAnswered);
       const borderRequired = selectedAnswer || (props.isAnswered && correctAnswer);
       const backgroundColor = (!props.isAnswered && selectedAnswer)                   ? "#D6DBF5" :

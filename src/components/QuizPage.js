@@ -51,7 +51,7 @@ export default function QuizPage(props) {
 
   function handleButtonClick(selectedAnswer, id) {
     setQuizQuestions(prevQuizQuestions => prevQuizQuestions.map(question => {
-      if (question.id != id) {
+      if (question.id !== id) {
         return question;
       } else {
         question.selectedAnswer = selectedAnswer;
@@ -74,8 +74,6 @@ export default function QuizPage(props) {
   }
 
   let quizQuestionElems = generateQuizQuestionsElems();
-
-  console.log(quizQuestions);
 
   return (
     <div className="quiz-container">
