@@ -15,11 +15,11 @@ export default function QuizPage(props) {
     return quizQuestions.map(quizQuestion => {
              return (<QuizQuestion question={quizQuestion.question}
                                    answers={quizQuestion.answers}
-                                   correct_answer={quizQuestion.correct_answer}
-                                   selected_answer={quizQuestion.selected_answer}
-                                   is_answered={!props.quizInProgress}
+                                   correctAnswer={quizQuestion.correctAnswer}
+                                   selectedAnswer={quizQuestion.selectedAnswer}
+                                   isAnswered={!props.quizInProgress}
                                    key={quizQuestion.id}
-                                   handleButtonClick={(selected_answer) => handleButtonClick(selected_answer, quizQuestion.id)}
+                                   handleButtonClick={(selectedAnswer) => handleButtonClick(selectedAnswer, quizQuestion.id)}
                      />);
              });
   }
@@ -40,9 +40,9 @@ export default function QuizPage(props) {
       return ({
                 question: item.question,
                 answers: answers,
-                correct_answer: item.correct_answer,
-                selected_answer: "",
-                is_answered: false,
+                correctAnswer: item.correct_answer,
+                selectedAnswer: "",
+                isAnswered: false,
                 id: nanoid()
       });
     });
@@ -53,7 +53,7 @@ export default function QuizPage(props) {
       if (question.id != id) {
         return question;
       } else {
-        question.selected_answer = selectedAnswer;
+        question.selectedAnswer = selectedAnswer;
         return question;
       }
     }));

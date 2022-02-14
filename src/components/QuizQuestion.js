@@ -3,13 +3,13 @@ import React from "react"
 export default function QuizQuestion(props) {
   function generateButtonItems() {
     return props.answers.map(answer => {
-      let selectedAnswer = answer == props.selected_answer;
-      let correctAnswer = answer == props.correct_answer;
-      const fullOpacityRequired = !props.is_answered || (correctAnswer && props.is_answered);
-      const borderRequired = selectedAnswer || (props.is_answered && correctAnswer);
-      const backgroundColor = (!props.is_answered && selectedAnswer)                  ? "#D6DBF5" :
-                              (props.is_answered && selectedAnswer && !correctAnswer) ? "#EB7F7F" :
-                              (props.is_answered && correctAnswer)                    ? "#94D7A2" :
+      let selectedAnswer = answer == props.selectedAnswer;
+      let correctAnswer = answer == props.correctAnswer;
+      const fullOpacityRequired = !props.isAnswered || (correctAnswer && props.isAnswered);
+      const borderRequired = selectedAnswer || (props.isAnswered && correctAnswer);
+      const backgroundColor = (!props.isAnswered && selectedAnswer)                   ? "#D6DBF5" :
+                              (props.isAnswered && selectedAnswer && !correctAnswer)  ? "#EB7F7F" :
+                              (props.isAnswered && correctAnswer)                     ? "#94D7A2" :
                                                                                         "transparent";
       let styles = {
         backgroundColor: backgroundColor,
@@ -19,7 +19,7 @@ export default function QuizQuestion(props) {
       };
       return <li>
                <button style={styles}
-                       onClick={() => { if (!props.is_answered) props.handleButtonClick(answer) }}
+                       onClick={() => { if (!props.isAnswered) props.handleButtonClick(answer) }}
                        className="quiz-answer"
                >
                  {window.atob(answer)}
