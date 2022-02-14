@@ -4,6 +4,7 @@ import QuizQuestion from "./QuizQuestion"
 
 export default function QuizPage(props) {
   const [quizQuestions, setQuizQuestions] = React.useState([]);
+  const [rightAnswersCount, setRightAnswersCount] = React.useState(0);
 
   React.useEffect(() => {
     if (props.quizInProgress) {
@@ -60,6 +61,15 @@ export default function QuizPage(props) {
   }
 
   function toggleCheckButton() {
+    if (props.quizInProgress) {
+      let rightAnswersCount = 0;
+      for (let quizQuestion of quizQuestions) {
+        if (quizQuestion.selectedAnswer === quizQuestion.correctAnswer) {
+          rightAnswersCount++;
+        }
+      }
+      setRightAnswersCount(rightAnswersCount);
+    }
     props.toggleQuizProgress();
   }
 
@@ -73,6 +83,7 @@ export default function QuizPage(props) {
         {quizQuestionElems}
       </div>
       <div>
+        {!props.quizInProgress && <span className="quiz-results">You scored {rightAnswersCount}/5 correct answers</span>}
         <button className="quiz-button" onClick={toggleCheckButton}>{props.quizInProgress ? "Check answers" : "Play again"}</button>
       </div>
     </div>
