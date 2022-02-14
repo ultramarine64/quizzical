@@ -19,7 +19,7 @@ export default function QuizQuestion(props) {
       };
       return <li>
                <button style={styles}
-                       onClick={() => props.handleButtonClick(answer)}
+                       onClick={() => { if (!props.is_answered) props.handleButtonClick(answer) }}
                        className="quiz-answer"
                >
                  {window.atob(answer)}
