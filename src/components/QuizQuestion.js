@@ -29,7 +29,7 @@ export default function QuizQuestion(props) {
   }
 
   return (
-    <div>
+    <div className="quiz-question-container">
       <h2 className="quiz-question"><>{window.atob(props.question)}</></h2>
       <ul className="quiz-answers">
         {generateButtonItems()}

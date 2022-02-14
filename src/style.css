@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 16px;
+}
+
 body {
   margin: 0;
   background-color: #F5F7FB;
@@ -10,17 +14,17 @@ body {
 
 .quiz-container {
   width: 100vw;
-  height: 100vh;
+  padding: 3% 25%;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
 }
 
-.quiz-container h1 {
+.quiz-title {
   font-weight: bold;
-  font-size: 31px;
-  line-height: 0;
+  font-size: 60px;
+  line-height: 50px;
   color: #293264;
   text-align: center;
 }
@@ -29,8 +33,7 @@ body {
   margin: 20px;
   font: inherit;
   background: #4D5B9E;
-  width: 190px;
-  height: 50px;
+  padding: 14px 30px;
   border: none;
   border-radius: 15px;
   font-weight: 500;
@@ -40,13 +43,33 @@ body {
   outline: none;
 }
 
+.start-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.start-page .quiz-button {
+  padding: 20px 40px;
+  font-size: 26px;
+}
+
+.quiz-description {
+  font-family: Inter;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 15px;
+  text-align: center;
+  color: #293264;
+}
+
 .quiz-container button:focus,
 .quiz-container button:active {
   outline: none;
 }
 
 .quiz-question {
-  line-height: 20px;
+  line-height: 30px;
   color: #293264;
 }
 
