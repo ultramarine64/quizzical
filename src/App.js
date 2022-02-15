@@ -19,7 +19,7 @@ export default function App() {
   React.useEffect(() => {
     // fetch in background
     if (!quizInProgress) {
-      fetch("https://opentdb.com/api.php?amount=5&type=multiple&encode=base64")
+      fetch("https://opentdb.com/api.php?amount=5&type=multiple")
         .then(response => response.json())
         .then(data => setQuizData(data.results));
     }

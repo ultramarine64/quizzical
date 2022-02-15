@@ -21,8 +21,8 @@ export default function QuizQuestion(props) {
                <button style={styles}
                        onClick={() => { if (!props.isAnswered) props.handleButtonClick(answer) }}
                        className="quiz-answer"
+                       dangerouslySetInnerHTML={{__html: answer}}
                >
-                 {window.atob(answer)}
                </button>
             </li>
     })
@@ -30,7 +30,7 @@ export default function QuizQuestion(props) {
 
   return (
     <div className="quiz-question-container">
-      <h2 className="quiz-question"><>{window.atob(props.question)}</></h2>
+      <h2 className="quiz-question" dangerouslySetInnerHTML={{__html: props.question}}></h2>
       <ul className="quiz-answers">
         {generateButtonItems()}
       </ul>
