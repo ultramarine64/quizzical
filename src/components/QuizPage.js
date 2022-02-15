@@ -80,7 +80,7 @@ export default function QuizPage(props) {
       <div>
         {quizQuestionElems}
       </div>
-      <div>
+      <div className="quiz-page-bottom">
         {!props.quizInProgress && <span className="quiz-results">You scored {rightAnswersCount}/5 correct answers</span>}
         <button className="quiz-button" onClick={toggleCheckButton}>{props.quizInProgress ? "Check answers" : "Play again"}</button>
       </div>

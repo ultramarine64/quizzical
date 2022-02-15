@@ -139,6 +139,12 @@ hr {
   .quiz-button {
     padding: 1.5rem 2.5rem;
   }
+
+  .quiz-page-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 @media (max-width: 400px) {
@@ -146,3 +152,4 @@ hr {
     font-size: 11px;
   }
 }
+
