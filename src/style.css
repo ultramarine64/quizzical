@@ -35,7 +35,7 @@ body {
   background: #4D5B9E;
   padding: 0.875rem 1.875rem;
   border: none;
-  border-radius: 1rem;
+  border-radius: 2rem;
   font-weight: 500;
   text-align: center;
   color: #F5F7FB;
@@ -75,7 +75,7 @@ body {
 
 .quiz-answers {
   margin-top: 1.875rem;
-  padding: 0;
+  padding: 0 0 0.25rem 0;
   list-style-type: none;
   display: flex;
   align-items: center;
@@ -135,10 +135,14 @@ hr {
   html {
     font-size: 12px;
   }
+
+  .quiz-button {
+    padding: 1.5rem 2.5rem;
+  }
 }
 
 @media (max-width: 400px) {
   html {
-    font-size: 10px;
+    font-size: 11px;
   }
 }
