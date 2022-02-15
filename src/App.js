@@ -5,7 +5,7 @@ import QuizPage from "./components/QuizPage"
 export default function App() {
   const [quizStarted, setQuizStarted] = React.useState(false);
   const [quizInProgress, setQuizInProgress] = React.useState(false);
-  const [quizData, setQuizData] = React.useState([]);
+  const [quizData, setQuizData] = React.useState(null);
 
   function startQuiz() {
     setQuizStarted(true);
@@ -28,7 +28,7 @@ export default function App() {
   console.log(quizData);
 
   return (
-      quizStarted
+      (quizStarted && quizData)
       ?
       <QuizPage quizData={quizData} quizInProgress={quizInProgress} toggleQuizProgress={toggleQuizProgress} />
       :
