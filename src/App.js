@@ -25,8 +25,6 @@ export default function App() {
     }
   }, [quizInProgress]);
 
-  console.log(quizData);
-
   return (
       (quizStarted && quizData)
       ?

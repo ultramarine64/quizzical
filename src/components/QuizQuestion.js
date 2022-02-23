@@ -5,17 +5,17 @@ export default function QuizQuestion(props) {
   const WRONG_ANSWER_COLOR = "#EB7F7F";
   const CORRECT_ANSWER_COLOR = "#94D7A2";
 
-  function generateButtonItems() {
+  function generateAnswerItems() {
     return props.answers.map(answer => {
-      let selectedAnswer = answer === props.selectedAnswer;
-      let correctAnswer = answer === props.correctAnswer;
-      const fullOpacityRequired = !props.isAnswered || (correctAnswer && props.isAnswered);
-      const borderRequired = selectedAnswer || (props.isAnswered && correctAnswer);
-      const backgroundColor = (!props.isAnswered && selectedAnswer)                   ? SELECTED_ANSWER_COLOR :
-                              (props.isAnswered && selectedAnswer && !correctAnswer)  ? WRONG_ANSWER_COLOR :
-                              (props.isAnswered && correctAnswer)                     ? CORRECT_ANSWER_COLOR :
+      const selectedAnswer = answer === props.selectedAnswer;
+      const correctAnswer = answer === props.correctAnswer;
+      const fullOpacityRequired = !props.isQuizFinished || (correctAnswer && props.isQuizFinished);
+      const borderRequired = selectedAnswer || (props.isQuizFinished && correctAnswer);
+      const backgroundColor = (!props.isQuizFinished && selectedAnswer)                   ? SELECTED_ANSWER_COLOR :
+                              (props.isQuizFinished && selectedAnswer && !correctAnswer)  ? WRONG_ANSWER_COLOR :
+                              (props.isQuizFinished && correctAnswer)                     ? CORRECT_ANSWER_COLOR :
                                                                                         "transparent";
-      let styles = {
+      const styles = {
         backgroundColor: backgroundColor,
         border: borderRequired ? "none" : "2px solid #4D5B9E",
         padding: borderRequired ? "10px 22px" : "8px 20px",
@@ -23,12 +23,12 @@ export default function QuizQuestion(props) {
       };
       return <li>
                <button style={styles}
-                       onClick={() => { if (!props.isAnswered) props.handleButtonClick(answer) }}
+                       onClick={() => { if (!props.isQuizFinished) props.handleButtonClick(answer) }}
                        className="quiz-answer"
                        dangerouslySetInnerHTML={{__html: answer}}
                >
                </button>
-            </li>
+             </li>
     })
   }
 
@@ -36,7 +36,7 @@ export default function QuizQuestion(props) {
     <div className="quiz-question-container">
       <h2 className="quiz-question" dangerouslySetInnerHTML={{__html: props.question}}></h2>
       <ul className="quiz-answers">
-        {generateButtonItems()}
+        {generateAnswerItems()}
       </ul>
       <hr />
     </div>

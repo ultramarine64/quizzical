@@ -18,7 +18,7 @@ export default function QuizPage(props) {
                                    answers={quizQuestion.answers}
                                    correctAnswer={quizQuestion.correctAnswer}
                                    selectedAnswer={quizQuestion.selectedAnswer}
-                                   isAnswered={!props.quizInProgress}
+                                   isQuizFinished={!props.quizInProgress}
                                    key={quizQuestion.id}
                                    handleButtonClick={(selectedAnswer) => handleButtonClick(selectedAnswer, quizQuestion.id)}
                      />);
@@ -36,14 +36,13 @@ export default function QuizPage(props) {
 
   function generateQuizQuestions() {
     return props.quizData.map(item => {
-      let answers = [...item.incorrect_answers, item.correct_answer];
+      const answers = [...item.incorrect_answers, item.correct_answer];
       shuffleArray(answers);
       return ({
                 question: item.question,
                 answers: answers,
                 correctAnswer: item.correct_answer,
                 selectedAnswer: "",
-                isAnswered: false,
                 id: nanoid()
       });
     });
@@ -73,12 +72,10 @@ export default function QuizPage(props) {
     props.toggleQuizProgress();
   }
 
-  let quizQuestionElems = generateQuizQuestionsElems();
-
   return (
     <div className="quiz-container">
       <div>
-        {quizQuestionElems}
+        {generateQuizQuestionsElems()}
       </div>
       <div className="quiz-page-bottom">
         {!props.quizInProgress && <span className="quiz-results">You scored {rightAnswersCount}/5 correct answers</span>}
