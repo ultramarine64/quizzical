@@ -1,15 +1,19 @@
 import React from "react"
 
 export default function QuizQuestion(props) {
+  const SELECTED_ANSWER_COLOR = "#D6DBF5";
+  const WRONG_ANSWER_COLOR = "#EB7F7F";
+  const CORRECT_ANSWER_COLOR = "#94D7A2";
+
   function generateButtonItems() {
     return props.answers.map(answer => {
       let selectedAnswer = answer === props.selectedAnswer;
       let correctAnswer = answer === props.correctAnswer;
       const fullOpacityRequired = !props.isAnswered || (correctAnswer && props.isAnswered);
       const borderRequired = selectedAnswer || (props.isAnswered && correctAnswer);
-      const backgroundColor = (!props.isAnswered && selectedAnswer)                   ? "#D6DBF5" :
-                              (props.isAnswered && selectedAnswer && !correctAnswer)  ? "#EB7F7F" :
-                              (props.isAnswered && correctAnswer)                     ? "#94D7A2" :
+      const backgroundColor = (!props.isAnswered && selectedAnswer)                   ? SELECTED_ANSWER_COLOR :
+                              (props.isAnswered && selectedAnswer && !correctAnswer)  ? WRONG_ANSWER_COLOR :
+                              (props.isAnswered && correctAnswer)                     ? CORRECT_ANSWER_COLOR :
                                                                                         "transparent";
       let styles = {
         backgroundColor: backgroundColor,
