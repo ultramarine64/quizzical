@@ -1,6 +1,7 @@
 import React from "react"
 import StartPage from "./components/StartPage"
 import QuizPage from "./components/QuizPage"
+import {Oval} from "react-loader-spinner"
 
 export default function App() {
   const [quizStarted, setQuizStarted] = React.useState(false);
@@ -26,10 +27,25 @@ export default function App() {
   }, [quizInProgress]);
 
   return (
-      (quizStarted && quizData)
+      quizStarted
       ?
-      <QuizPage quizData={quizData} quizInProgress={quizInProgress} toggleQuizProgress={toggleQuizProgress} />
+        quizData
+        ?
+          <QuizPage quizData={quizData} quizInProgress={quizInProgress} toggleQuizProgress={toggleQuizProgress} />
+        :
+          <Oval
+            color="#293264"
+            secondaryColor="#000000"
+            height="30vh"
+            width="30vh"
+            wrapperStyle={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              marginTop: "35vh"
+            }}
+          />
       :
-      <StartPage startQuiz={startQuiz} />
+        <StartPage startQuiz={startQuiz} />
   );
 }
